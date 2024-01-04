@@ -37,4 +37,3 @@ Contributions to improve the repository are highly appreciated. Feel free to sub
 Stay tuned for updates and dive into the fascinating world of advanced JavaScript with me!
 
 ---
-
