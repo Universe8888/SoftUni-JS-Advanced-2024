@@ -1,3 +1,10 @@
+/**
+ * You will be given several input lines containing info about the restaurants in the following format:
+ * "{restaurantName} - {workerName1} {salary1} {workerName2} {salary2} {workerName3} {salary3}…"
+ * @param {string[]} input - array of strings
+ * @returns {string} - formatted string
+ */
+
 function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
