@@ -1,7 +1,6 @@
 /**
  * The function should generate a report from the data in the HTML table and return it as a JSON string.
  * 
- * @param {String} selector - selector of the element
  * @param {Array} data - array of objects
  * @param {Array} columns - array of strings
  * @returns {undefined} - The function doesn’t return anything – it should modify the DOM directly.
