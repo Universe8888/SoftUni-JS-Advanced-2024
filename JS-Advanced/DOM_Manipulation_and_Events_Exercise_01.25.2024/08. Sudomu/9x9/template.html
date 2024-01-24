@@ -135,7 +135,60 @@
 
 	</div>
 	<script>
-	//TODO...
+	function solve() {
+    let table = document.querySelector('table');
+    let rows = Array.from(table.querySelectorAll('tr'));
+    let isSolved = true;
+
+    // Check rows
+    for (let row of rows) {
+        let inputs = Array.from(row.querySelectorAll('input'));
+        let values = inputs.map(input => Number(input.value));
+        if (!validate(values)) {
+            isSolved = false;
+            break;
+        }
+    }
+
+    // Check columns
+	for (let i = 0; i < 9; i++) {
+    let values = rows.map(row => {
+        let input = row.querySelectorAll('input')[i];
+        return input ? Number(input.value) : 0;
+    });
+    if (!validate(values)) {
+        isSolved = false;
+        break;
+    }
+}
+
+
+    // Update UI based on isSolved
+    updateUI(isSolved, table, document.querySelector('#check p'));
+
+    function validate(arr) {
+        let set = new Set(arr);
+        return set.size === 9 && !set.has(0); // checks all numbers are unique and within 1-9
+    }
+
+    function updateUI(isSolved, table, checkPar) {
+        if (isSolved) {
+            table.style.border = '2px solid green';
+            checkPar.style.color = 'green';
+            checkPar.textContent = 'You solved it! Congratulations!';
+        } else {
+            table.style.border = '2px solid red';
+            checkPar.style.color = 'red';
+            checkPar.textContent = 'Nope! You are not done yet...';
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    let button = document.querySelector('button');
+    button.addEventListener('click', solve);
+});
+
 	</script>
 </body>
 
