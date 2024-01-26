@@ -1,3 +1,11 @@
+/**
+ * @param {HTMLButtonElement} encodeBtn
+ * @param {HTMLButtonElement} decodeBtn
+ * @param {HTMLTextAreaElement} encodeTextArea
+ * @param {HTMLTextAreaElement} decodeTextArea
+ * @returns {void}
+ */
+
 function encodeAndDecodeMessages() {
     let encodeBtn = document.getElementsByTagName('button')[0];
     let decodeBtn = document.getElementsByTagName('button')[1];
