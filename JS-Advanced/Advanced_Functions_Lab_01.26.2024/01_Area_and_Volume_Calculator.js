@@ -1,3 +1,10 @@
+/**
+ * @param {Function} area
+ * @param {Function} vol
+ * @param {String} input
+ * @returns {Array}
+ */
+
 function solve(area, vol, input) {
     let objects = JSON.parse(input);
     let result = [];
