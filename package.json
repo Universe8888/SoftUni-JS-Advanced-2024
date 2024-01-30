@@ -1,0 +1,23 @@
+{
+  "name": "softuni-js-advanced-2024",
+  "version": "1.0.0",
+  "description": "This repository is the central hub for the Software University's \"JS Advanced\" course in my point of view for the year 2024. It's designed to provide with in-depth knowledge and practical skills in JavaScript, focusing on its functionality within its most common environment - the browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Universe8888/SoftUni-JS-Advanced-2024.git"
+  },
+  "author": "Boris Manzov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Universe8888/SoftUni-JS-Advanced-2024/issues"
+  },
+  "homepage": "https://github.com/Universe8888/SoftUni-JS-Advanced-2024#readme",
+  "dependencies": {
+    "chai": "^5.0.3",
+    "mocha": "^10.2.0"
+  }
+}
