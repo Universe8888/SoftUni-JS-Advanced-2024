@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Universe8888/SoftUni-JS-Advanced-2024#readme",
   "dependencies": {
     "chai": "^5.0.3",
+    "esm": "^3.2.25",
     "mocha": "^10.2.0"
   }
 }
