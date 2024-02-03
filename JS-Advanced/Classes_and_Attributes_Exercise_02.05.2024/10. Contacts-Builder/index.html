@@ -1,23 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Contacts Builder</title>
 </head>
-
 <body>
     <div id="main">
-        <article>
-            <div class="title">{firstName lastName}<button>&#8505;</button></div>
-            <div class="info">
-                <span>&phone; {phone}</span>
-                <span>&#9993; {email}</span>
-            </div>
-        </article>
     </div>
-</body>
+     <script>
+        class Contact {
+            constructor(firstName, lastName, phone, email) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.phone = phone;
+                this.email = email;
+                this._online = false;
+            }
 
+            get online() {
+                return this._online;
+            }
+
+            set online(value) {
+                this._online = value;
+                if (this.titleDiv) {
+                    if (value) {
+                        this.titleDiv.classList.add('online');
+                    } else {
+                        this.titleDiv.classList.remove('online');
+                    }
+                }
+            }
+
+            render(id) {
+                let article = document.createElement('article');
+                
+                this.titleDiv = document.createElement('div');
+                this.titleDiv.className = 'title';
+                this.titleDiv.innerHTML = `${this.firstName} ${this.lastName}<button>&#8505;</button>`;
+                article.appendChild(this.titleDiv);
+                
+                let infoDiv = document.createElement('div');
+                infoDiv.className = 'info';
+                infoDiv.style.display = 'none';
+                infoDiv.innerHTML = `
+                    <span>&phone; ${this.phone}</span>
+                    <span>&#9993; ${this.email}</span>
+                `;
+                article.appendChild(infoDiv);
+
+                this.titleDiv.querySelector('button').addEventListener('click', () => {
+                    infoDiv.style.display = infoDiv.style.display === 'none' ? 'block' : 'none';
+                });
+
+                if (this._online) {
+                    this.titleDiv.classList.add('online');
+                }
+
+                document.getElementById(id).appendChild(article);
+            }
+        }
+
+        let contacts = [
+            new Contact("Ivan", "Ivanov", "0888 123 456", "i.ivanov@gmail.com"),
+            new Contact("Maria", "Petrova", "0899 987 654", "mar4eto@abv.bg"),
+            new Contact("Jordan", "Kirov", "0988 456 789", "jordk@gmail.com")
+        ];
+
+        contacts.forEach(c => c.render('main'));
+        setTimeout(() => contacts[1].online = true, 2000);
+    </script>
+</body>
 </html>
