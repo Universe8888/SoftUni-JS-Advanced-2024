@@ -1,10 +1,18 @@
 /**
- * You will be given several input lines containing info about the restaurants in the following format:
- * "{restaurantName} - {workerName1} {salary1} {workerName2} {salary2} {workerName3} {salary3}…"
- * @param {string[]} input - array of strings
- * @returns {string} - formatted string
+ * 07. Hell's Kitchen
+ * Write a program that finds the best restaurant for a given input of workers and their salaries.
+ * The input comes as a string, containing a number and a list of workers and their salaries. The number is the count of the workers in the restaurant. The workers and their salaries are separated by a dash and a space (' - ').
+ * The output should be the best restaurant, which is the restaurant with the highest average salary. The average salary should be formatted to the second decimal point.
+ * The output should also include the workers sorted by their salaries in descending order and the best salary for the restaurant.
+ * The input comes as a string, containing a number and a list of workers and their salaries, separated by a dash and a space (' - ').
+ * The output should be printed on the console and should contain the best restaurant, the average salary, the workers, and the best salary, all formatted as shown in the examples below.
+ * 
+ * Input
+ * The input comes as a string, containing a number and a list of workers and their salaries, separated by a dash and a space (' - ').
+ * 
+ * Output
+ * The output should be printed on the console and should contain the best restaurant, the average salary, the workers, and the best salary, all formatted as shown in the examples below.
  */
-
 function solve() {
    document.querySelector('#btnSend').addEventListener('click', onClick);
 
