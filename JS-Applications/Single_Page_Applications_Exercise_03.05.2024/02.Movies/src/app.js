@@ -56,9 +56,10 @@ async function register(event) {
     const password = document.getElementById('password').value;
     const repeatPassword = document.getElementById('repeatPassword').value;
 
-    if (!email || password.length < 6 || password !== repeatPassword) {
-        console.error('Invalid input');
-        return; // Additional error handling can be implemented
+    if (password !== repeatPassword || password.length < 6) {
+        // Implement error handling, such as displaying a message to the user
+        console.error('Password must be at least 6 characters and match the repeat password');
+        return;
     }
 
     try {
@@ -77,6 +78,7 @@ async function register(event) {
     }
 }
 
+
 async function loadMovies() {
     try {
         const response = await fetch('/data/movies', {
@@ -88,12 +90,15 @@ async function loadMovies() {
         const moviesList = document.getElementById('movies-list');
         moviesList.innerHTML = '';
         movies.forEach(movie => {
+            const isAuthor = movie._ownerId === localStorage.getItem('userId'); // Assuming userID is saved during login
             moviesList.innerHTML += `
                 <li class="card mb-4" data-id="${movie._id}">
                     <img class="card-img-top" src="${movie.img}" alt="Movie image">
                     <div class="card-body">
                         <h4 class="card-title">${movie.title}</h4>
                         <a href="#" class="btn btn-info details-button">Details</a>
+                        ${isAuthor ? `<a href="#" class="btn btn-warning edit-button">Edit</a>` : ''}
+                        ${isAuthor ? `<a href="#" class="btn btn-danger delete-button">Delete</a>` : ''}
                     </div>
                 </li>`;
         });
@@ -101,6 +106,7 @@ async function loadMovies() {
         console.error('Failed to load movies:', error);
     }
 }
+
 
 async function addMovie(event) {
     event.preventDefault();
@@ -205,7 +211,6 @@ async function handleLike(movieId) {
 
 async function editMovie(movieId) {
     try {
-        // Fetch movie details from the server
         const response = await fetch(`/data/movies/${movieId}`, {
             method: 'GET',
             headers: {
@@ -216,18 +221,14 @@ async function editMovie(movieId) {
 
         if (!response.ok) throw new Error(`Error: ${response.statusText}`);
         const movie = await response.json();
-
-        // Fill in the edit form fields with existing movie data
-        const form = document.getElementById('edit-movie-form');
-        form.style.display = 'block'; // Make sure the edit form is shown
         document.getElementById('edit-title').value = movie.title;
         document.getElementById('edit-description').value = movie.description;
         document.getElementById('edit-imageUrl').value = movie.img;
 
-        // Attach movieId to the form for reference during submission
-        form.dataset.movieId = movieId;
+        // Show the edit movie form or modal here
+        document.getElementById('edit-movie').style.display = 'block';
+        document.getElementById('edit-movie-form').dataset.movieId = movieId;
     } catch (error) {
         console.error('Failed to fetch movie details:', error);
-        // Optionally, update UI to show error message
     }
 }
