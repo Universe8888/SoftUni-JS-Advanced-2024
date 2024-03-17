@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "chai": "^5.1.0",
+    "playwright-chromium": "^1.42.1"
+  }
+}
