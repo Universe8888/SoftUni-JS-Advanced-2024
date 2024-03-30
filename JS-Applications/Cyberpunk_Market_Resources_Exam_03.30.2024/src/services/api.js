@@ -1,8 +1,7 @@
 // src/services/api.js
-
 import { clearUserData, getAccessToken } from '../utils/utils.js';
 
-const host = 'http://localhost:3030';
+const host = 'http://localhost:3030'; // Adjust if your API host is different
 
 async function request(method, url, data) {
     const options = {
@@ -22,8 +21,8 @@ async function request(method, url, data) {
 
     try {
         const response = await fetch(host + url, options);
-
-        if (!response.ok) {
+        
+        if (response.ok !== true) {
             if (response.status === 403) {
                 clearUserData();
             }
@@ -31,14 +30,26 @@ async function request(method, url, data) {
             throw new Error(error.message);
         }
 
-        return response.status === 204 ? response : response.json();
+        return response.status === 204 ? null : response.json();
     } catch (err) {
+        // Handle errors such as network issues
         alert(err.message);
         throw err;
     }
 }
 
-export const get = request.bind(null, 'GET');
-export const post = request.bind(null, 'POST');
-export const put = request.bind(null, 'PUT');
-export const del = request.bind(null, 'DELETE');
+export async function get(url) {
+    return request('GET', url);
+}
+
+export async function post(url, data) {
+    return request('POST', url, data);
+}
+
+export async function put(url, data) {
+    return request('PUT', url, data);
+}
+
+export async function del(url) {
+    return request('DELETE', url);
+}

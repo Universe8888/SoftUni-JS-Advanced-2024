@@ -1,44 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyberpunk Market</title>
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <script src="./src/app.js" type="module"></script>
-  </head>
-  <body>
-    <div id="wrapper">
-      <header id="header-element"></header>
-
-      <main id="main-element">
-        <!-- Home page content will be dynamically injected here -->
-
-        <!-- Dashboard page content will be dynamically injected here -->
-
-        <!-- If no posts, display message here -->
-
-        <!-- Register Page (Only for Guest users) content will be dynamically injected here -->
-
-        <!-- Login Page (Only for Guest users) content will be dynamically injected here -->
-
-        <!-- Create Page (Only for logged-in users) content will be dynamically injected here -->
-
-        <!-- Edit Page (Only for logged-in users) content will be dynamically injected here -->
-
-        <!-- Details page content will be dynamically injected here -->
-
-        <!-- Search page content will be dynamically injected here -->
-      </main>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+    <div id="container">
+        <header id="header-element"> <!-- NavBar gets rendered here --> </header>
+        <main id="main-content"> <!-- Page views get rendered here --> </main>
+        <footer id="footer-element"> <!-- Footer gets rendered here --> </footer>
     </div>
-    <footer id="footer-element">
-      <!-- Footer content will be dynamically injected here -->
-    </footer>
 
-    <!-- BONUS: Notification -->
-    <section id="notifications">
-      <div id="errorBox" class="notification">
-        <span class="msg">MESSAGE</span>
-      </div>
-    </section>
-  </body>
+    <script type="module" src="./src/app.js"></script>
+</body>
 </html>

@@ -1,41 +1,31 @@
 // src/components/NavBar.js
-
-import { html, render } from 'https://unpkg.com/lit-html/lit-html.js';
-import { getUserData } from '../utils/utils.js';
-import { logout as userLogout } from '../utils/userService.js';
+import { html, render } from 'lit-html';
+import { getUserData, onLogout } from '../utils/utils.js';
 
 const navTemplate = (user) => html`
-  <nav>
-    <a id="logo" href="/">
-      <img src="./images/logo.png" alt="Cyberpunk Dark Market Logo" />
-    </a>
-    <a href="/catalog">Market</a>
-    ${user
-      ? html`
-        <div class="user">
-          <a href="/create">Add Item</a>
-          <a href="" @click=${logoutHandler}>Logout</a> <!-- Added click handler for logout -->
-        </div>`
-      : html`
-        <div class="guest">
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
-        </div>`}
-  </nav>
+    <nav>
+        <a id="logo" href="/">
+            <img src="./images/logo.png" alt="Cyberpunk Market Logo" />
+        </a>
+        <a href="/catalog">Market</a>
+        ${user
+            ? html`
+                <div class="user">
+                    <a href="/create">Sell Item</a>
+                    <a href="/my-items">My Items</a>
+                    <a href="javascript:void(0)" @click=${onLogout}>Logout</a>
+                </div>`
+            : html`
+                <div class="guest">
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>`
+        }
+    </nav>
 `;
 
-function logoutHandler(event) {
-  event.preventDefault();
-  userLogout();
+export function setupNavBar() {
+    const header = document.querySelector('#header-element');
+    const user = getUserData();
+    render(navTemplate(user), header);
 }
-
-export function setupNavbar() {
-  const user = getUserData();
-  const headerElement = document.querySelector('#header-element'); // Corrected the selector
-  render(navTemplate(user), headerElement); // Render inside the header element
-}
-
-// Ensure that the navbar is set up after the DOM has fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-  setupNavbar();
-});

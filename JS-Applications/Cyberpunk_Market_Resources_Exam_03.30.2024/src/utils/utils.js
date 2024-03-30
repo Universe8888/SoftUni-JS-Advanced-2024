@@ -1,46 +1,18 @@
-import { logout as apiLogout } from './userService.js';
-
+// src/utils/utils.js
 export function getUserData() {
-    return JSON.parse(sessionStorage.getItem('user'));
+    const user = localStorage.getItem('userData');
+    return user ? JSON.parse(user) : null;
+}
+
+export function setUserData(data) {
+    localStorage.setItem('userData', JSON.stringify(data));
+}
+
+export function clearUserData() {
+    localStorage.removeItem('userData');
 }
 
 export function getAccessToken() {
     const user = getUserData();
     return user ? user.accessToken : null;
-}
-
-export function clearUserData() {
-    sessionStorage.removeItem('user');
-}
-
-export function setUserData(data) {
-    sessionStorage.setItem('user', JSON.stringify(data));
-}
-
-export function createSubmitHandler(context, handler) {
-    return function (e) {
-        e.preventDefault();
-        const formData = Object.fromEntries(new FormData(e.target));
-
-        handler(context, formData, e);
-    };
-}
-
-export function parseQueryString(query = '') {
-    return Object.fromEntries(query.split('&').map(kvp => {
-        const [key, value] = kvp.split('=');
-        return [key, value ? decodeURIComponent(value.replace(/\+/g, ' ')) : ''];
-    }));
-}
-
-export async function onLogout(context) {
-    try {
-        await apiLogout();
-        clearUserData();
-        if(context.page) {
-            context.page.redirect('/');
-        }
-    } catch (err) {
-        console.error('Logout failed:', err);
-    }
 }
